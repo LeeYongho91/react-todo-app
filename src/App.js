@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import './App.css';
 import Lists from './components/Lists';
 import Form from './components/Form';
 
 export default function App() {
- 
+  console.log(`app`);
   const [todoData, setTodoData] = useState([]);
   const [value, setValue] = useState('');
 
@@ -19,6 +19,12 @@ export default function App() {
     setValue("");
   }
 
+  const handleClick = useCallback((id) => {
+    console.log(`todoData`, todoData);
+    const newTodoData = todoData.filter(data => data.id !== id);
+    setTodoData(newTodoData)
+  }, [todoData])
+
   
 
     return(
@@ -27,7 +33,7 @@ export default function App() {
             <div className='flex justify-between mb-3'>
               <h1>할 일 목록</h1>
             </div>
-          <Lists todoData={todoData} setTodoData={setTodoData} />
+          <Lists todoData={todoData} setTodoData={setTodoData} handleClick={handleClick} />
           <Form value={value} setValue={setValue} handleSubmit={handleSubmit} />
         </div>
       </div>

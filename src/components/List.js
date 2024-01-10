@@ -1,7 +1,8 @@
 import React from 'react'
 
-export default function List({id, title, completed, todoData, setTodoData, provided, snapshot}) {
+const List =  React.memo(({id, title, completed, todoData, setTodoData, provided, snapshot, handleClick}) => {
 
+  console.log(`List`);
 
 
 const handleCompleteChange = (id) => {
@@ -16,10 +17,7 @@ const handleCompleteChange = (id) => {
 
 
 
-const handleClick = (id) => {
-  const newTodoData = todoData.filter(data => data.id !== id);
-  setTodoData(newTodoData)
-}
+
 
   return (
     <div
@@ -39,4 +37,6 @@ const handleClick = (id) => {
             </div>     
           </div>
   )
-}
+})
+
+export default List;
