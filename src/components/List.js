@@ -12,7 +12,9 @@ const handleCompleteChange = (id) => {
     }
     return data;
   });
-  setTodoData(newTodoData)
+  setTodoData(newTodoData);
+  localStorage.setItem('todoData', JSON.stringify(newTodoData));
+
 }
 
   const [isEditing, setIsEditing] = useState(false)
@@ -32,6 +34,7 @@ const handleCompleteChange = (id) => {
       return data;
     })
     setTodoData(newTodoData);
+    localStorage.setItem('todoData', JSON.stringify(newTodoData));
     setIsEditing(false);
   }
 
